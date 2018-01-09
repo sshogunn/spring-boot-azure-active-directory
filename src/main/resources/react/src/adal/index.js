@@ -45,6 +45,7 @@ export function adalFetch(url, options) {
         })
         .catch(err => {
             console.log(err);
+            return err;
         });
 }
 

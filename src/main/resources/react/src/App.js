@@ -37,7 +37,7 @@ class App extends Component<{}> {
         const resp = this.state.response &&
             <div>
                 <h2>API response:</h2>
-                {this.state.response}
+                {JSON.stringify(this.state.response, null, 4)}
             </div>;
         return (
             <div className="App">
