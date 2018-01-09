@@ -12,7 +12,14 @@ export function adalGetToken(resourceId) {
                 resolve(token);
             }
             else {
-                reject({ descr, msg });
+                authContext.acquireTokenPopup(resourceId, '', null, (descr, token, msg) => {
+                    if (!msg) {
+                        resolve(token);
+                    }
+                    else {
+                        reject({ descr, msg });
+                    }
+                });
             }
         });
     });

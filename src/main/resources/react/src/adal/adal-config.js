@@ -8,7 +8,7 @@
 
 const adalConfig = {
     tenant: 'stanislavChernov.onmicrosoft.com',
-    clientId: '623e3b66-cafa-4107-b290-204c39361546',
+    clientId: '5be39bef-6ca2-4df9-9bf0-2e58fa7c6103',// '623e3b66-cafa-4107-b290-204c39361546',
     extraQueryParameter: 'nux=1',
     disableRenewal: true,
     endpoints: {
