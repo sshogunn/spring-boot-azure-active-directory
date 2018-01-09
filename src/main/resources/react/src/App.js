@@ -5,20 +5,40 @@ import {adalLogOut, adalFetch} from './adal';
 
 class App extends Component<{}> {
 
+    constructor() {
+        super();
+        this.state = {
+            response: null
+        }
+    }
+
     logOut() {
         console.log('logging out...');
         adalLogOut();
     }
 
-    request() {
+    request = () => {
         console.log('Sending request...');
-        adalFetch('api/endpoint', {})
-            .then(data => {
-                console.log('Response: ', data);
+        adalFetch('http://localhost:8080/api/todolist', {
+            method: "POST",
+            body: JSON.stringify({
+                ID: 20,
+                Description: 'Test secured endpoint',
+                Owner: 'TestUser'
+            })
+        })
+            .then(response => {
+                console.log('Response: ', response);
+                this.setState({response})
             });
-    }
+    };
 
     render() {
+        const resp = this.state.response &&
+            <div>
+                <h2>API response:</h2>
+                {this.state.response}
+            </div>;
         return (
             <div className="App">
                 <header className="App-header">
@@ -29,6 +49,7 @@ class App extends Component<{}> {
                 </p>
                 <button onClick={this.logOut}>Logout</button>
                 <button onClick={this.request}>Make request</button>
+                {resp}
             </div>
         );
     }
