@@ -19,13 +19,13 @@ class App extends Component<{}> {
 
     request = () => {
         console.log('Sending request...');
-        adalFetch('http://localhost:8080/api/todolist', {
-            method: "POST",
+        adalFetch('/home', {
+            /*method: "POST",
             body: JSON.stringify({
                 ID: 20,
                 Description: 'Test secured endpoint',
                 Owner: 'TestUser'
-            })
+            })*/
         })
             .then(response => {
                 console.log('Response: ', response);

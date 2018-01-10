@@ -48,7 +48,8 @@ export function adalFetch(url, options) {
             const o = options;
             if (!o.headers) o.headers = {};
             o.headers.Authorization = `Bearer ${token}`;
-            return fetch(url, options);
+            return fetch(url, options)
+                .then(response => response.json());
         })
         .catch(err => {
             console.log(err);
