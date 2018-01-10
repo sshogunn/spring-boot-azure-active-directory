@@ -35,5 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
         http.addFilterBefore(aadAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+        http.headers().frameOptions().sameOrigin();
     }
 }
