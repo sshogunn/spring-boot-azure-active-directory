@@ -21,5 +21,6 @@
     "eject": "react-scripts eject",
     "flow": "flow",
     "build-static": "react-scripts build && mv build/* ../resources/static"
-  }
+  },
+  "proxy": "http://localhost:8080"
 }
