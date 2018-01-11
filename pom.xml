@@ -10,6 +10,12 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <properties>
+        <docker.image.prefix>azure-sample</docker.image.prefix>
+        <docker-maven.plugin.version>0.23.0</docker-maven.plugin.version>
+        <project.rootdir>${project.basedir}/../..</project.rootdir>
+    </properties>
+
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-active-directory-spring-boot-sample</artifactId>
     <packaging>jar</packaging>
@@ -60,11 +66,48 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker-maven.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <dockerHost>tcp://localhost:2375</dockerHost>
+                    <verbose>true</verbose>
+                    <images>
+                        <image>
+                            <name>${docker.image.prefix}/${project.artifactId}</name>
+                            <build>
+                                <cmd>bash -c 'touch /${project.build.finalName}.jar'</cmd>
+                                <from>java:8</from>
+                                <volumes>
+                                    <volume>/tmp</volume>
+                                </volumes>
+                                <entryPoint>
+                                    <exec>
+                                        <arg>java</arg>
+                                        <arg>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5006</arg>
+                                        <arg>-Djava.security.egd=file:/dev/./urandom</arg>
+                                        <arg>-jar</arg>
+                                        <arg>/${project.build.finalName}.jar</arg>
+                                    </exec>
+                                </entryPoint>
+                                <assembly>
+                                    <descriptorRef>artifact</descriptorRef>
+                                    <targetDir>/</targetDir>
+                                </assembly>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-
-    <properties>
-        <project.rootdir>${project.basedir}/../..</project.rootdir>
-    </properties>
-
 </project>
