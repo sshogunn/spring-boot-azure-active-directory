@@ -17,8 +17,8 @@ angular.module('todoApp', ['ngRoute', 'AdalAngular'])
         adalProvider.init(
             {
                 instance: 'https://login.microsoftonline.com/',
-                tenant: 'stanislavChernov.onmicrosoft.com',
-                clientId: '5be39bef-6ca2-4df9-9bf0-2e58fa7c6103',
+                tenant: 'EPAM.onmicrosoft.com',
+                clientId: 'dfc50f18-c112-4326-9def-3894934dd191',
                 extraQueryParameter: 'nux=1',
                 cacheLocation: 'localStorage',
             },

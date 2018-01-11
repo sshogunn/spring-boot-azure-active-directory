@@ -1,7 +1,7 @@
 azure:
   activedirectory:
-    clientId: 5be39bef-6ca2-4df9-9bf0-2e58fa7c6103
-    clientSecret: wmCDXwdrr3hxPtcchOwF9qRCU2+e649Myqi1sGj0Q6w=
+    clientId: dfc50f18-c112-4326-9def-3894934dd191
+    clientSecret: qylnddSZTaE+UKOTq9/0NURm5IoYVpROGPtt2Pj2h0g=
     activeDirectoryGroups: group1,group2
 
 logging:
